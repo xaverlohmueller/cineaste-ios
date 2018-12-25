@@ -3,7 +3,7 @@
 //  CineasteTests
 //
 //  Created by Felizia Bernutz on 28.12.17.
-//  Copyright © 2017 notimeforthat.org. All rights reserved.
+//  Copyright © 2017 spacepandas.de. All rights reserved.
 //
 
 import XCTest

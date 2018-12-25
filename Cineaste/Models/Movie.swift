@@ -3,7 +3,7 @@
 //  Cineaste
 //
 //  Created by Christian Braun on 18.10.17.
-//  Copyright notimeforthat.org. All rights reserved.
+//  Copyright spacepandas.de. All rights reserved.
 //
 
 import UIKit

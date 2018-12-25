@@ -3,7 +3,7 @@
 //  Cineaste
 //
 //  Created by Felizia Bernutz on 03.04.18.
-//  Copyright © 2018 notimeforthat.org. All rights reserved.
+//  Copyright © 2018 spacepandas.de. All rights reserved.
 //
 
 import UIKit
