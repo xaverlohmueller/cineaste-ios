@@ -12,3 +12,21 @@ enum Result<SuccessType> {
     case success(SuccessType)
     case error(Error)
 }
+
+extension Result {
+    var value: SuccessType? {
+        if case let .success(value) = self {
+            return value
+        } else {
+            return nil
+        }
+    }
+
+    var error: Error? {
+        if case let .error(error) = self {
+            return error
+        } else {
+            return nil
+        }
+    }
+}

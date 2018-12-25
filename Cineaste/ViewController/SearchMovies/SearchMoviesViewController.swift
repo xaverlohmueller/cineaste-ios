@@ -37,11 +37,10 @@ class SearchMoviesViewController: UIViewController {
         }
     }
 
+    let movieSearchController = MovieSearchController()
+
     var selectedMovie: Movie?
     var storageManager: MovieStorage?
-
-    var currentPage: Int?
-    var totalResults: Int?
 
     var isLoadingNextPage = false
 
@@ -65,8 +64,8 @@ class SearchMoviesViewController: UIViewController {
             navigationItem.largeTitleDisplayMode = .never
         }
 
-        loadMovies { [weak self] movies in
-            self?.movies = movies
+        movieSearchController.searchMovies { [weak self] movies in
+            self?.movies = movies.value ?? []
         }
 
         configureSearchController()

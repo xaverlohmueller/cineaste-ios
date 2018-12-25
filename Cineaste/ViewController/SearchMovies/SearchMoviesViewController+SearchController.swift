@@ -12,12 +12,17 @@ extension SearchMoviesViewController: UISearchControllerDelegate {
     func didDismissSearchController(_ searchController: UISearchController) {
         guard let text = searchController.searchBar.text, !text.isEmpty else { return }
 
-        currentPage = nil
-        totalResults = nil
+        movieSearchController.searchMovies(text) { [weak self] result in
+            guard let self = self else { return }
 
-        loadMovies { [weak self] movies in
-            self?.movies = movies
-            self?.scrollToTopCell(withAnimation: true)
+            guard let value = result.value else {
+                self.showAlert(withMessage: Alert.loadingDataError)
+                self.movies = []
+                return
+            }
+
+            self.movies = value
+            self.scrollToTopCell(withAnimation: true)
         }
     }
 }
@@ -26,8 +31,8 @@ extension SearchMoviesViewController: UISearchResultsUpdating {
     internal func updateSearchResults(for searchController: UISearchController) {
         searchDelayTimer?.invalidate()
         searchDelayTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] _ in
-            self?.loadMovies(forQuery: searchController.searchBar.text) { movies in
-                self?.movies = movies
+            self?.movieSearchController.searchMovies(searchController.searchBar.text) { movies in
+                self?.movies = movies.value ?? []
                 self?.scrollToTopCell(withAnimation: false)
             }
         }

@@ -120,6 +120,8 @@
 		3FF7913120DE274A007B7D37 /* MoviesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F61B2FD1FFAD680007A0557 /* MoviesList.storyboard */; };
 		3FF7913220DE274A007B7D37 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 3FD6AA7820BA986900B72ABC /* Localizable.stringsdict */; };
 		4EABD57C2129C5E2007F20D9 /* NonClearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EABD57A2129C49E007F20D9 /* NonClearView.swift */; };
+		4ECBA59C21D2685C0074492B /* Webservice+Cineaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA59B21D2685C0074492B /* Webservice+Cineaste.swift */; };
+		4ECBA59E21D28A900074492B /* MovieSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA59D21D28A900074492B /* MovieSearchController.swift */; };
 		4ED734FD218A335500D36421 /* cineaste.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 958328991FBB81340084CF80 /* cineaste.xcassets */; };
 		B3DFCDE862927DA73F2DFF56 /* Pods_Cineaste_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CA3A436156ECDA1783835AB /* Pods_Cineaste_App.framework */; };
 /* End PBXBuildFile section */
@@ -246,6 +248,8 @@
 		3FF7913720DE274A007B7D37 /* Cineaste Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Cineaste Dev.app"; path = "Cineaste App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EABD57A2129C49E007F20D9 /* NonClearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonClearView.swift; sourceTree = "<group>"; };
 		4EABD57D2129C622007F20D9 /* NonClearViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonClearViewTests.swift; sourceTree = "<group>"; };
+		4ECBA59B21D2685C0074492B /* Webservice+Cineaste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Webservice+Cineaste.swift"; sourceTree = "<group>"; };
+		4ECBA59D21D28A900074492B /* MovieSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchController.swift; sourceTree = "<group>"; };
 		8B1D619255E0CD991E8DAF3C /* Pods-CineasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineasteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CineasteTests/Pods-CineasteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		917C2D4646DC7E2D0CEB1684 /* Pods-Cineaste App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cineaste App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cineaste App/Pods-Cineaste App.debug.xcconfig"; sourceTree = "<group>"; };
 		951D86D12034B71F00BDD1D0 /* Cineaste-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cineaste-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -581,7 +585,9 @@
 			isa = PBXGroup;
 			children = (
 				95EFA4AD1FA13878004F1F94 /* Webservice.swift */,
+				4ECBA59B21D2685C0074492B /* Webservice+Cineaste.swift */,
 				95EFA4AF1FA13AAA004F1F94 /* Resource.swift */,
+				4ECBA59D21D28A900074492B /* MovieSearchController.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -966,6 +972,7 @@
 				3FF7911220DE274A007B7D37 /* SearchMoviesViewController.swift in Sources */,
 				3FF095CF2103256100ADFB86 /* SettingsViewController+UITableView.swift in Sources */,
 				3FF7911320DE274A007B7D37 /* Storyboard.swift in Sources */,
+				4ECBA59E21D28A900074492B /* MovieSearchController.swift in Sources */,
 				3FF7911420DE274A007B7D37 /* MovieMatchCell.swift in Sources */,
 				3FF7911520DE274A007B7D37 /* AppDelegate.swift in Sources */,
 				3FF7911620DE274A007B7D37 /* AlertMessage.swift in Sources */,
@@ -973,6 +980,7 @@
 				3FF7911820DE274A007B7D37 /* String+Cineaste.swift in Sources */,
 				3FF095BB2103221E00ADFB86 /* SearchMoviesViewController+SearchController.swift in Sources */,
 				3FF7911920DE274A007B7D37 /* FetchedResultsManager.swift in Sources */,
+				4ECBA59C21D2685C0074492B /* Webservice+Cineaste.swift in Sources */,
 				3FF7911A20DE274A007B7D37 /* SettingsViewController.swift in Sources */,
 				3F701B1121863C4B0033562B /* SeenMovieCell.swift in Sources */,
 				3F7ABD5420F5C70C004B069E /* Movie+Formatted.swift in Sources */,

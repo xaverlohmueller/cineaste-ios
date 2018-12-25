@@ -17,7 +17,7 @@ enum NetworkError: Error {
 
 enum Webservice {
     @discardableResult
-    static func load<A>(resource: Resource<A>?, completion: @escaping (Result<A>) -> Void) -> URLSessionTask? {
+    static func load<A>(resource: Resource<A>?, completion: @escaping Completion<A>) -> URLSessionTask? {
         guard let resource = resource else {
             completion(Result.error(NetworkError.emptyResource))
             return nil

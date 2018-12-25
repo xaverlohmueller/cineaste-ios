@@ -10,10 +10,10 @@ import UIKit
 
 class MoviesViewController: UITableViewController {
     @IBOutlet private weak var emptyView: UIView!
-    @IBOutlet private weak var empyListTitle: UILabel! {
+    @IBOutlet private weak var emptyListTitle: UILabel! {
         didSet {
-            empyListTitle.textColor = .accentTextOnBlack
-            empyListTitle.text = .noContentTitle
+            emptyListTitle.textColor = .accentTextOnBlack
+            emptyListTitle.text = .noContentTitle
         }
     }
     @IBOutlet private weak var emptyListLabel: UILabel! {

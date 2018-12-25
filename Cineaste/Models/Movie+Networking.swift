@@ -11,9 +11,10 @@ import UIKit
 extension Movie {
     fileprivate static let apiKey = ApiKeyStore.theMovieDbKey
 
-    static func search(withQuery query: String, page: Int) -> Resource<PagedMovieResult>? {
-        guard let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
-            return nil
+    static func search(withQuery query: String?, page: Int) -> Resource<PagedMovieResult> {
+        guard let query = query,
+            let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            return latestReleases(page: page)
         }
         let urlAsString = "\(Constants.Backend.url)/search/movie" +
             "?language=\(String.languageFormattedForTMDb)" +
@@ -25,9 +26,7 @@ extension Movie {
 
         return Resource(url: urlAsString, method: .get) { data in
             do {
-                let paginatedMovies = try JSONDecoder()
-                    .decode(PagedMovieResult.self, from: data)
-                return paginatedMovies
+                return try JSONDecoder().decode(PagedMovieResult.self, from: data)
             } catch {
                 print(error)
                 return nil
@@ -35,7 +34,7 @@ extension Movie {
         }
     }
 
-    static func latestReleases(page: Int) -> Resource<PagedMovieResult>? {
+    static func latestReleases(page: Int) -> Resource<PagedMovieResult> {
         let oneMonthInPast = Date(timeIntervalSinceNow: -60 * 60 * 24 * 30)
         let oneMonthInFuture = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30)
         let urlAsString = "\(Constants.Backend.url)/discover/movie" +
