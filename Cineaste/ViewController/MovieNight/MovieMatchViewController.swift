@@ -141,9 +141,8 @@ extension MovieMatchViewController: UISearchResultsUpdating {
 
 extension MovieMatchViewController: MovieMatchTableViewCellDelegate {
     func movieMatchTableViewCell(didSelectMovie movie: NearbyMovie, withPoster poster: UIImage?) {
-        let movieForRequest = Movie(id: movie.id,
-                                    title: movie.title)
-        Webservice.load(resource: movieForRequest.get) { result in
+
+        Webservice.load(resource: .loadMovie(by: movie.id)) { result in
             switch result {
             case .success(let movie):
                 movie.poster = poster ?? movie.poster

@@ -298,7 +298,7 @@ class MovieDetailViewController: UIViewController {
         // Setup with the default data to show something while new data is loading
         setupUI(for: movie)
 
-        Webservice.load(resource: movie.get) { result in
+        Webservice.loadDetails(movie.id) { result in
             guard case let .success(detailedMovie) = result else { return }
 
             detailedMovie.poster = movie.poster

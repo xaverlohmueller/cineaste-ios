@@ -19,30 +19,43 @@ enum Webservice {
     @discardableResult
     static func load<A>(resource: Resource<A>?, completion: @escaping Completion<A>) -> URLSessionTask? {
         guard let resource = resource else {
-            completion(Result.error(NetworkError.emptyResource))
+            completion(.error(NetworkError.emptyResource))
             return nil
         }
-        guard let url = URL(string: resource.url) else {
-            completion(Result.error(NetworkError.parseUrl))
-            return nil
+        guard let url = URL(string: resource.url),
+            var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+            else {
+                completion(.error(NetworkError.parseUrl))
+                return nil
         }
-        var request = URLRequest(url: url)
+
+        components.queryItems =
+            components.queryItems ?? []
+            + defaultQueryItems
+            + resource.query.map(URLQueryItem.init)
+
+        var request = URLRequest(url: components.url ?? url)
         request.httpMethod = resource.method.rawValue
 
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
             guard error == nil, let data = data else {
                 // swiftlint:disable:next force_unwrapping
-                completion(Result.error(error!))
+                completion(.error(error!))
                 return
             }
             guard let result = resource.parse(data) else {
-                completion(Result.error(NetworkError.parseData))
+                completion(.error(NetworkError.parseData))
                 return
             }
-            completion(Result.success(result))
+            completion(.success(result))
         }
 
         task.resume()
         return task
     }
+
+    private static let defaultQueryItems: [URLQueryItem] = [
+        URLQueryItem(name: "language", value: .languageFormattedForTMDb),
+        URLQueryItem(name: "api_key", value: ApiKeyStore.theMovieDbKey)
+    ]
 }

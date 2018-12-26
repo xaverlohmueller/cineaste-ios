@@ -17,6 +17,14 @@ enum HTTPMethod: String {
 
 struct Resource<A> {
     let url: String
+    let query: [String: String]
     let method: HTTPMethod
     let parse: (Data) -> A?
+
+    init(url: String, query: [String: String] = [:], method: HTTPMethod = .get, parse: @escaping (Data) -> A?) {
+        self.url = url
+        self.query = query
+        self.method = method
+        self.parse = parse
+    }
 }

@@ -12,7 +12,7 @@ extension Webservice {
         Webservice.load(resource: resource, completion: completion)
     }
 
-    static func loadDetails(_ id: String, completion: @escaping Completion<Movie>) {
-
+    static func loadDetails(_ id: Int64, completion: @escaping Completion<Movie>) {
+        Webservice.load(resource: .loadMovie(by: id), completion: completion)
     }
 }

@@ -7,12 +7,12 @@
 //
 
 final class MovieSearchController {
-    private var page = 0
+    private var page = 1
     private var totalPages = 0
 
     private var query: String? {
         didSet {
-            page = 0
+            page = 1
             totalPages = 0
         }
     }
