@@ -147,7 +147,6 @@ class SearchMoviesViewController: UIViewController {
 
 extension SearchMoviesViewController: SearchMoviesCellDelegate {
     func searchMoviesCell(didTriggerActionButtonFor movie: Movie, watched: Bool) {
-        guard let storageManager = storageManager else { return }
 
         Webservice.loadDetails(movie.id) { result in
             guard let detailedMovie = result.value else {
@@ -157,20 +156,13 @@ extension SearchMoviesViewController: SearchMoviesCellDelegate {
 
             detailedMovie.poster = movie.poster
 
-            storageManager.insertMovieItem(with: detailedMovie, watched: watched) { result in
-                DispatchQueue.main.async {
-                    if self.resultSearchController.isActive {
-                        self.resultSearchController.isActive = false
-                    }
-
-                    switch result {
-                    case .error:
-                        self.showAlert(withMessage: Alert.insertMovieError)
-                    case .success:
-                        self.dismiss(animated: true)
-                    }
-                }
+            do {
+                try Current.persistence.insert(movie: detailedMovie)
+                self.dismiss(animated: true, completion: nil)
+            } catch {
+                self.showAlert(withMessage: Alert.insertMovieError)
             }
+            self.resultSearchController.isActive = false
         }
     }
 }
