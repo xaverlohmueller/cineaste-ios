@@ -13,14 +13,13 @@ extension Movie {
 
     static func search(withQuery query: String?, page: Int) -> Resource<PagedMovieResult> {
         guard let query = query,
-            !query.isEmpty,
-            let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            !query.isEmpty else {
             return latestReleases(page: page)
         }
         let urlAsString = "\(Constants.Backend.url)/search/movie"
 
         let urlQuery = [
-            "query": "\(escapedQuery)",
+            "query": "\(query)",
             "region": "\(String.regionIso31661)",
             "with_release_type": "3",
             "page": "\(page)"
