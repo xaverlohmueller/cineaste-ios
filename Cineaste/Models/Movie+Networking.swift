@@ -36,14 +36,13 @@ extension Movie {
     }
 
     static func latestReleases(page: Int) -> Resource<PagedMovieResult> {
-        let oneMonthInPast = Date(timeIntervalSinceNow: -60 * 60 * 24 * 30)
-        let oneMonthInFuture = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30)
+        let now = Date()
         let urlAsString = "\(Constants.Backend.url)/discover/movie"
 
         let query = [
             "region": "\(String.regionIso31661)",
-            "release_date.gte": "\(oneMonthInPast.formattedForRequest)",
-            "release_date.lte": "\(oneMonthInFuture.formattedForRequest)",
+            "release_date.gte": "\(now.oneMonthInThePast.formattedForRequest)",
+            "release_date.lte": "\(now.oneMonthInTheFuture.formattedForRequest)",
             "with_release_type": "3",
             "page": "\(page)"
         ]
