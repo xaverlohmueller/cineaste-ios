@@ -97,7 +97,7 @@ extension FetchedResultsManager {
         loadMoviesForExport = false
     }
 
-    func importData(_ data: Data, completionHandler completion: @escaping ((Result<Int>) -> Void)) {
+    func importData(_ data: Data, completionHandler completion: @escaping Completion<Int>) {
         let storageManager = MovieStorage()
 
         storageManager.resetCoreData { _ in

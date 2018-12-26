@@ -250,6 +250,7 @@
 		4ECBA59B21D2685C0074492B /* Webservice+Cineaste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Webservice+Cineaste.swift"; sourceTree = "<group>"; };
 		4ECBA59D21D28A900074492B /* MovieSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchController.swift; sourceTree = "<group>"; };
 		4ECBA59F21D2EAD40074492B /* Resource+Cineaste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resource+Cineaste.swift"; sourceTree = "<group>"; };
+		4ECBA5A121D37BE60074492B /* apikey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = apikey.plist; path = cineaste.xcassets/ApiKeys.dataset/apikey.plist; sourceTree = "<group>"; };
 		8B1D619255E0CD991E8DAF3C /* Pods-CineasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineasteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CineasteTests/Pods-CineasteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		917C2D4646DC7E2D0CEB1684 /* Pods-Cineaste App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cineaste App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cineaste App/Pods-Cineaste App.debug.xcconfig"; sourceTree = "<group>"; };
 		951D86D12034B71F00BDD1D0 /* Cineaste-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cineaste-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -494,6 +495,7 @@
 				95DC32031F97E1300014E3EA /* Model.xcdatamodeld */,
 				9528112F201D087800F3EC76 /* .swiftlint.yml */,
 				958328991FBB81340084CF80 /* cineaste.xcassets */,
+				4ECBA5A121D37BE60074492B /* apikey.plist */,
 				951D86D12034B71F00BDD1D0 /* Cineaste-Bridging-Header.h */,
 				95AE25AB1F9531E20067F5F5 /* Info.plist */,
 				3F98063F20556EA700B92A27 /* InfoPlist.strings */,

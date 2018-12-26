@@ -22,7 +22,6 @@ final class MovieSearchController {
     }
 
     func searchMovies(_ query: String? = nil, completion: @escaping Completion<[Movie]>) {
-
         self.query = query
 
         Webservice.searchMovies(query, page: page) { [weak self] result in

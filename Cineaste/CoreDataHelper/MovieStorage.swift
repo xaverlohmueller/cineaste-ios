@@ -149,10 +149,10 @@ class MovieStorage {
         if backgroundContext.hasChanges {
             do {
                 try backgroundContext.save()
-                handler?(Result.success(true))
+                handler?(.success(true))
             } catch {
                 print("Save error \(error)")
-                handler?(Result.error(error))
+                handler?(.error(error))
             }
         }
     }

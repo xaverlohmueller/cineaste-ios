@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias Completion<A> = (Result<A>) -> Void
+
 enum NetworkError: Error {
     case parseUrl
     case parseJson
