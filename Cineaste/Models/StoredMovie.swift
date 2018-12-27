@@ -23,36 +23,29 @@ extension CodingUserInfoKey {
 @objc(StoredMovie)
 class StoredMovie: NSManagedObject, Codable {
 
-    convenience init(withMovie movie: Movie, context: NSManagedObjectContext) {
-        self.init(context: context)
-        id = movie.id
-        title = movie.title
-        overview = movie.overview
-        posterPath = movie.posterPath
+    static func saveMovie(_ movie: Movie, in context: NSManagedObjectContext) -> StoredMovie {
+        let stored: StoredMovie = context.insertObject()
+        stored.id = movie.id
+        stored.title = movie.title
+        stored.overview = movie.overview
+        stored.posterPath = movie.posterPath
 
         if let moviePoster = movie.poster {
-            poster = moviePoster.jpegData(compressionQuality: 1)
+            stored.poster = moviePoster.jpegData(compressionQuality: 1)
         }
 
-        voteAverage = movie.voteAverage
-        voteCount = movie.voteCount
+        stored.voteAverage = movie.voteAverage
+        stored.voteCount = movie.voteCount
 
-        runtime = movie.runtime
-        releaseDate = movie.releaseDate
+        stored.runtime = movie.runtime
+        stored.releaseDate = movie.releaseDate
 
-        watched = false
-        watchedDate = nil
+        stored.watched = false
+        stored.watchedDate = nil
 
-        listPosition = 0
-    }
+        stored.listPosition = 0
 
-    convenience init(context moc: NSManagedObjectContext) {
-        let name = String(describing: type(of: self))
-        guard let entity = NSEntityDescription.entity(forEntityName: name, in: moc) else {
-            fatalError("Unable to create entity description with \(name)")
-        }
-
-        self.init(entity: entity, insertInto: moc)
+        return stored
     }
 
     enum CodingKeys: String, CodingKey {
@@ -132,5 +125,19 @@ class StoredMovie: NSManagedObject, Codable {
         try container.encodeIfPresent(watchedDate?.formattedForJson, forKey: .watchedDate)
 
         try container.encode(listPosition, forKey: .listPosition)
+    }
+}
+
+extension StoredMovie: Managed {
+    static var defaultSortDescriptors: [NSSortDescriptor] {
+        return [
+            NSSortDescriptor(key: "listPosition", ascending: true),
+            NSSortDescriptor(key: "title", ascending: true)
+        ]
+    }
+    static var seenMoviesSortDescriptors: [NSSortDescriptor] {
+        return [
+            NSSortDescriptor(key: "watchedDate", ascending: false)
+        ]
     }
 }

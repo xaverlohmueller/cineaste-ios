@@ -24,84 +24,26 @@ class MovieStorage {
         return context
     }()
 
-    // MARK: CRUD
-    //swiftlint:disable:next function_parameter_count
-    func insertMovieItem(id: Int64,
-                         overview: String,
-                         poster: Data?,
-                         posterPath: String,
-                         releaseDate: Date,
-                         runtime: Int16,
-                         title: String,
-                         voteAverage: Double,
-                         voteCount: Double,
-                         watched: Bool,
-                         handler: ((_ result: Result<Bool>) -> Void)? = nil) {
-        backgroundContext.perform {
-            let storedMovie = StoredMovie(context: self.backgroundContext)
-            storedMovie.id = id
-            storedMovie.title = title
-            storedMovie.overview = overview
-
-            storedMovie.posterPath = posterPath
-            storedMovie.poster = poster
-
-            storedMovie.releaseDate = releaseDate
-            storedMovie.runtime = runtime
-            storedMovie.voteAverage = voteAverage
-            storedMovie.voteCount = voteCount
-
-            storedMovie.watched = watched
-            storedMovie.watchedDate = watched ? Date() : nil
-            self.save(handler: handler)
-        }
-    }
-
     func insertMovieItem(with movie: Movie,
                          watched: Bool,
-                         handler: ((_ result: Result<Bool>) -> Void)? = nil) {
-        backgroundContext.perform {
-            let storedMovie = StoredMovie(context: self.backgroundContext)
-            storedMovie.id = movie.id
-            storedMovie.title = movie.title
-            storedMovie.overview = movie.overview
+                         handler: Completion<Void>? = nil) {
+        backgroundContext.performChanges { context in
 
-            storedMovie.posterPath = movie.posterPath
-            if let moviePoster = movie.poster {
-                storedMovie.poster = moviePoster.jpegData(compressionQuality: 1)
-            }
-
-            storedMovie.releaseDate = movie.releaseDate
-            storedMovie.runtime = movie.runtime
-            storedMovie.voteAverage = movie.voteAverage
-            storedMovie.voteCount = movie.voteCount
-
+            let storedMovie = StoredMovie.saveMovie(movie, in: context)
             storedMovie.watched = watched
             storedMovie.watchedDate = watched ? Date() : nil
-            self.save(handler: handler)
+            handler?(.success(()))
         }
     }
 
     func updateMovieItem(with movie: StoredMovie,
                          watched: Bool,
-                         handler: ((_ result: Result<Bool>) -> Void)? = nil) {
-        backgroundContext.perform {
-            let storedMovie = StoredMovie(context: self.backgroundContext)
-            storedMovie.id = movie.id
-            storedMovie.title = movie.title
-            storedMovie.overview = movie.overview
-
-            storedMovie.posterPath = movie.posterPath
-            storedMovie.poster = movie.poster
-
-            storedMovie.releaseDate = movie.releaseDate
-            storedMovie.runtime = movie.runtime
-            storedMovie.voteAverage = movie.voteAverage
-            storedMovie.voteCount = movie.voteCount
-
-            storedMovie.watched = watched
-            storedMovie.watchedDate = watched ? Date() : nil
-            self.save(handler: handler)
+                         handler: Completion<Void>? = nil) {
+        let context = movie.managedObjectContext ?? backgroundContext
+        context.performChanges { _ in
+            movie.watched = watched
+            movie.watchedDate = watched ? Date() : nil
+            handler?(.success(()))
         }
     }
 
@@ -121,39 +63,22 @@ class MovieStorage {
     }
 
     func resetCoreData(completion: @escaping (Error?) -> Void) {
-        backgroundContext.perform {
-            do {
-                let entities: [StoredMovie] = try self.backgroundContext
-                    .fetch(StoredMovie.fetchRequest())
-                for entity in entities {
-                    self.backgroundContext.delete(entity)
-                }
-                try self.backgroundContext.save()
-                completion(nil)
-            } catch {
-                completion(error)
+        backgroundContext.performChanges { context in
+            let entities: [StoredMovie] = try context.fetch(StoredMovie.fetchRequest())
+            for entity in entities {
+                context.delete(entity)
             }
+            completion(nil)
         }
     }
 
     func remove(_ storedMovie: StoredMovie,
-                handler: ((_ result: Result<Bool>) -> Void)? = nil) {
-        backgroundContext.perform {
-            let object = self.backgroundContext.object(with: storedMovie.objectID)
-            self.backgroundContext.delete(object)
-            self.save(handler: handler)
-        }
-    }
-
-    fileprivate func save(handler: ((_ result: Result<Bool>) -> Void)? = nil) {
-        if backgroundContext.hasChanges {
-            do {
-                try backgroundContext.save()
-                handler?(.success(true))
-            } catch {
-                print("Save error \(error)")
-                handler?(.error(error))
-            }
+                handler: Completion<Void>? = nil) {
+        let context = storedMovie.managedObjectContext ?? backgroundContext
+        context.performChanges { context in
+            let object = context.object(with: storedMovie.objectID)
+            context.delete(object)
+            handler?(.success(()))
         }
     }
 }

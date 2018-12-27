@@ -123,9 +123,10 @@
 		4ECBA5A021D2EAD40074492B /* Resource+Cineaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA59F21D2EAD40074492B /* Resource+Cineaste.swift */; };
 		4ECBA5A321D37EAC0074492B /* Date+Cineaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA5A221D37EAC0074492B /* Date+Cineaste.swift */; };
 		4ECBA5A521D38E9D0074492B /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA5A421D38E9D0074492B /* World.swift */; };
-		4ECBA5A821D38EB50074492B /* CoreDataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA5A621D38EB50074492B /* CoreDataPersistence.swift */; };
-		4ECBA5A921D38EB50074492B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA5A721D38EB50074492B /* Persistence.swift */; };
 		4ECE901D21D3EFBF0026F846 /* NonClearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EABD57A2129C49E007F20D9 /* NonClearView.swift */; };
+		4ED1199821D4FBEE00016AB4 /* Managed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1199721D4FBEE00016AB4 /* Managed.swift */; };
+		4ED1199A21D4FF6B00016AB4 /* NSManagedObjectContext+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1199921D4FF6B00016AB4 /* NSManagedObjectContext+Extensions.swift */; };
+		4ED1199C21D56F0900016AB4 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1199B21D56F0900016AB4 /* TableViewDataSource.swift */; };
 		4ED734FD218A335500D36421 /* cineaste.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 958328991FBB81340084CF80 /* cineaste.xcassets */; };
 		B3DFCDE862927DA73F2DFF56 /* Pods_Cineaste_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CA3A436156ECDA1783835AB /* Pods_Cineaste_App.framework */; };
 /* End PBXBuildFile section */
@@ -257,8 +258,9 @@
 		4ECBA5A121D37BE60074492B /* apikey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = apikey.plist; path = cineaste.xcassets/ApiKeys.dataset/apikey.plist; sourceTree = "<group>"; };
 		4ECBA5A221D37EAC0074492B /* Date+Cineaste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Cineaste.swift"; sourceTree = "<group>"; };
 		4ECBA5A421D38E9D0074492B /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
-		4ECBA5A621D38EB50074492B /* CoreDataPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataPersistence.swift; sourceTree = "<group>"; };
-		4ECBA5A721D38EB50074492B /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		4ED1199721D4FBEE00016AB4 /* Managed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managed.swift; sourceTree = "<group>"; };
+		4ED1199921D4FF6B00016AB4 /* NSManagedObjectContext+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extensions.swift"; sourceTree = "<group>"; };
+		4ED1199B21D56F0900016AB4 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		8B1D619255E0CD991E8DAF3C /* Pods-CineasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineasteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CineasteTests/Pods-CineasteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		917C2D4646DC7E2D0CEB1684 /* Pods-Cineaste App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cineaste App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cineaste App/Pods-Cineaste App.debug.xcconfig"; sourceTree = "<group>"; };
 		951D86D12034B71F00BDD1D0 /* Cineaste-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cineaste-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -394,7 +396,10 @@
 			children = (
 				3FCC71321FD747D600A47ADF /* FetchedResultsManager.swift */,
 				3FCC71361FD7536B00A47ADF /* FetchedResultsManagerDelegate.swift */,
+				4ED1199721D4FBEE00016AB4 /* Managed.swift */,
+				4ED1199921D4FF6B00016AB4 /* NSManagedObjectContext+Extensions.swift */,
 				3F8C569B1FFACAFF00F09A82 /* MovieStorage.swift */,
+				4ED1199B21D56F0900016AB4 /* TableViewDataSource.swift */,
 			);
 			path = CoreDataHelper;
 			sourceTree = "<group>";
@@ -417,15 +422,6 @@
 				3FF095C12103236400ADFB86 /* UIView+BlurEffect.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		4E5183E6216E957B0065FA98 /* Persistence */ = {
-			isa = PBXGroup;
-			children = (
-				4ECBA5A621D38EB50074492B /* CoreDataPersistence.swift */,
-				4ECBA5A721D38EB50074492B /* Persistence.swift */,
-			);
-			path = Persistence;
 			sourceTree = "<group>";
 		};
 		906382ECBD82C2FAB3BF2985 /* Frameworks */ = {
@@ -597,7 +593,6 @@
 				3F941B7220F52905008A4407 /* StoredMovie+Networking.swift */,
 				3F5E0D922030988E00E091BE /* TextViewType.swift */,
 				4ECBA5A421D38E9D0074492B /* World.swift */,
-				4E5183E6216E957B0065FA98 /* Persistence */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -940,7 +935,6 @@
 				3FA6C9D920F7DCEC0050368E /* CustomSafariViewController.swift in Sources */,
 				3FF790E920DE274A007B7D37 /* PagedMovieResult.swift in Sources */,
 				3F7ABD5520F5C710004B069E /* Movie+Networking.swift in Sources */,
-				4ECBA5A821D38EB50074492B /* CoreDataPersistence.swift in Sources */,
 				3F7ABD5320F5C708004B069E /* StoredMovie+Formatted.swift in Sources */,
 				4ECBA5A021D2EAD40074492B /* Resource+Cineaste.swift in Sources */,
 				3FF790EA20DE274A007B7D37 /* FetchedResultsManagerDelegate.swift in Sources */,
@@ -969,12 +963,14 @@
 				3FF790FA20DE274A007B7D37 /* Label.swift in Sources */,
 				3FF790FB20DE274A007B7D37 /* NearbyMovie.swift in Sources */,
 				3F85488A21039778007A322E /* IndexPath+Last.swift in Sources */,
+				4ED1199C21D56F0900016AB4 /* TableViewDataSource.swift in Sources */,
 				3FF790FC20DE274A007B7D37 /* SearchMoviesViewController+UITableView.swift in Sources */,
 				3FA48FA020FA7C14002F7665 /* SearchController.swift in Sources */,
 				3FF790FD20DE274A007B7D37 /* String+VariantFittingPresentationWidth.swift in Sources */,
 				3FF790FE20DE274A007B7D37 /* Double+Formatter.swift in Sources */,
 				3FF790FF20DE274A007B7D37 /* Resource.swift in Sources */,
 				3FF7910020DE274A007B7D37 /* ApiKeyStore.swift in Sources */,
+				4ED1199A21D4FF6B00016AB4 /* NSManagedObjectContext+Extensions.swift in Sources */,
 				3FF7910120DE274A007B7D37 /* MovieMatchViewController.swift in Sources */,
 				3FF095D5210325D100ADFB86 /* SettingsViewController+UIDocumentPicker.swift in Sources */,
 				3FF7910220DE274A007B7D37 /* SettingsCell.swift in Sources */,
@@ -991,7 +987,6 @@
 				3FF7910C20DE274A007B7D37 /* UITableView+GenericDequeue.swift in Sources */,
 				3FF7910D20DE274A007B7D37 /* NearbyMessage.swift in Sources */,
 				3FF7910E20DE274A007B7D37 /* UserDefaultsManager.swift in Sources */,
-				4ECBA5A921D38EB50074492B /* Persistence.swift in Sources */,
 				3FF7910F20DE274A007B7D37 /* MovieListCell.swift in Sources */,
 				3FF7911020DE274A007B7D37 /* SearchMoviesCell.swift in Sources */,
 				3FF7911220DE274A007B7D37 /* SearchMoviesViewController.swift in Sources */,
@@ -1011,6 +1006,7 @@
 				3F7ABD5420F5C70C004B069E /* Movie+Formatted.swift in Sources */,
 				3FF7911B20DE274A007B7D37 /* ImportExportObject.swift in Sources */,
 				3FF7911C20DE274A007B7D37 /* String+DateFormatter.swift in Sources */,
+				4ED1199821D4FBEE00016AB4 /* Managed.swift in Sources */,
 				3FA48FA620FA859E002F7665 /* MoviesViewController+3DTouch.swift in Sources */,
 				3FF7911D20DE274A007B7D37 /* MoviesViewController.swift in Sources */,
 				3F701B1221863CDF0033562B /* MovieStorage.swift in Sources */,

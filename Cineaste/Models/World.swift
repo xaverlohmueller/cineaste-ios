@@ -7,7 +7,7 @@
 //
 
 struct World {
-    var persistence: Persistence = CoreDataPersistence()
+    var movieStorage = MovieStorage()
 }
 
 // swiftlint:disable:next identifier_name

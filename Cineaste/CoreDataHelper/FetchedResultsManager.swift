@@ -39,14 +39,9 @@ final class FetchedResultsManager: NSObject {
         request.predicate = predicate
 
         if predicate == MovieListCategory.seen.predicate {
-            request.sortDescriptors = [
-                NSSortDescriptor(key: "watchedDate", ascending: false)
-            ]
+            request.sortDescriptors = StoredMovie.seenMoviesSortDescriptors
         } else {
-            request.sortDescriptors = [
-                NSSortDescriptor(key: "listPosition", ascending: true),
-                NSSortDescriptor(key: "title", ascending: true)
-            ]
+            request.sortDescriptors = StoredMovie.defaultSortDescriptors
         }
 
         controller = NSFetchedResultsController<StoredMovie>(
@@ -65,14 +60,9 @@ final class FetchedResultsManager: NSObject {
         controller.fetchRequest.predicate = predicate
 
         if predicate == MovieListCategory.seen.predicate {
-            controller.fetchRequest.sortDescriptors = [
-                NSSortDescriptor(key: "watchedDate", ascending: false)
-            ]
+            controller.fetchRequest.sortDescriptors = StoredMovie.seenMoviesSortDescriptors
         } else {
-            controller.fetchRequest.sortDescriptors = [
-                NSSortDescriptor(key: "listPosition", ascending: true),
-                NSSortDescriptor(key: "title", ascending: true)
-            ]
+            controller.fetchRequest.sortDescriptors = StoredMovie.defaultSortDescriptors
         }
 
         try? controller.performFetch()

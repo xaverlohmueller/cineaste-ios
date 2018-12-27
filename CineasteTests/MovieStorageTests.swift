@@ -33,17 +33,8 @@ class MovieStorageTests: XCTestCase {
     func testCreateStoredMovie() {
         let expc = expectation(description: "StoredMovie should be created")
         let id: Int64 = 100
-        storageManager.insertMovieItem(id: id,
-                                       overview: "",
-                                       poster: nil,
-                                       posterPath: "",
-                                       releaseDate: Date(),
-                                       runtime: 1,
-                                       title: "",
-                                       voteAverage: 2,
-                                       voteCount: 1,
-                                       watched: false)
-        { result in
+        let movie = Movie(id: id, title: "")
+        storageManager.insertMovieItem(with: movie, watched: false) { result in
             switch result {
             case .success:
                 expc.fulfill()
@@ -54,7 +45,7 @@ class MovieStorageTests: XCTestCase {
         wait(for: [expc], timeout: 1)
 
         let storedMovies = storageManager.fetchAll()
-        let storedMovie = storedMovies.filter({ $0.id == id }).first
+        let storedMovie = storedMovies.first { $0.id == id }
         XCTAssertNotNil(storedMovie)
         XCTAssertEqual(storedMovie?.id, id)
     }
@@ -71,7 +62,7 @@ class MovieStorageTests: XCTestCase {
         }
         wait(for: [expc], timeout: 1.0)
         let storedMovies = storageManager.fetchAll()
-        let storedMovie = storedMovies.filter({ $0.id == movie.id }).first
+        let storedMovie = storedMovies.first { $0.id == movie.id }
         XCTAssertNotNil(storedMovie)
         XCTAssertEqual(storedMovie?.id, movie.id)
     }

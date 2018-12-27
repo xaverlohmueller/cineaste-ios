@@ -156,12 +156,8 @@ extension SearchMoviesViewController: SearchMoviesCellDelegate {
 
             detailedMovie.poster = movie.poster
 
-            do {
-                try Current.persistence.insert(movie: detailedMovie)
-                self.dismiss(animated: true, completion: nil)
-            } catch {
-                self.showAlert(withMessage: Alert.insertMovieError)
-            }
+            Current.movieStorage.insertMovieItem(with: detailedMovie, watched: watched)
+            self.dismiss(animated: true, completion: nil)
             self.resultSearchController.isActive = false
         }
     }

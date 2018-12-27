@@ -22,15 +22,18 @@ class MoviesViewController: UITableViewController {
         }
     }
 
+    lazy var datasource = TableViewDataSource(
+        tableView: tableView,
+        cellIdentifier: MovieListCell.identifier,
+        fetchedResultsController: self.fetchedResultsManager.controller,
+        delegate: self
+    )
+
     var category: MovieListCategory = .watchlist {
         didSet {
             title = category.title
             emptyListLabel.text = String.title(for: category)
-
-            let changedCategory = oldValue != category
-            guard changedCategory else { return }
             fetchedResultsManager.refetch(for: category.predicate)
-            tableView.reloadData()
         }
     }
 
@@ -51,8 +54,6 @@ class MoviesViewController: UITableViewController {
 
         view.backgroundColor = UIColor.basicBackground
 
-        fetchedResultsManager.delegate = self
-        fetchedResultsManager.refetch(for: category.predicate)
         showEmptyState(fetchedResultsManager.movies.isEmpty)
 
         registerForPreviewing(with: self, sourceView: tableView)
@@ -138,6 +139,7 @@ class MoviesViewController: UITableViewController {
         tableView.estimatedRowHeight = 80
 
         tableView.backgroundView = emptyView
+        tableView.dataSource = datasource
     }
 
     private func configureSearchController() {
@@ -254,28 +256,10 @@ extension MoviesViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - FetchedResultsManagerDelegate
-
-extension MoviesViewController: FetchedResultsManagerDelegate {
-    func beginUpdate() {
-        tableView.beginUpdates()
-    }
-    func insertRows(at index: [IndexPath]) {
-        tableView.insertRows(at: index, with: .fade)
-    }
-    func deleteRows(at index: [IndexPath]) {
-        tableView.deleteRows(at: index, with: .fade)
-    }
-    func updateRows(at index: [IndexPath]) {
-        tableView.reloadRows(at: index, with: .fade)
-    }
-    func moveRow(at index: IndexPath, to newIndex: IndexPath) {
-        tableView.moveRow(at: index, to: newIndex)
-    }
-    func endUpdate() {
-        tableView.endUpdates()
-        showEmptyState(fetchedResultsManager.movies.isEmpty)
-        updateShortcutItems()
+// MARK: - TableViewDataSourceDelegate
+extension MoviesViewController: TableViewDataSourceDelegate {
+    func configure(_ cell: MovieListCell, for movie: StoredMovie) {
+        cell.configure(with: movie)
     }
 }
 

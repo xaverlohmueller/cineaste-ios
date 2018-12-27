@@ -9,25 +9,8 @@
 import UIKit
 
 extension MoviesViewController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultsManager.movies.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch category {
-        case .watchlist:
-            let cell: MovieListCell = tableView.dequeueCell(identifier: MovieListCell.identifier)
-            cell.configure(with: fetchedResultsManager.movies[indexPath.row])
-            return cell
-        case .seen:
-            let cell: SeenMovieCell = tableView.dequeueCell(identifier: SeenMovieCell.identifier)
-            cell.configure(with: fetchedResultsManager.movies[indexPath.row])
-            return cell
-        }
-    }
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedMovie = fetchedResultsManager.movies[indexPath.row]
+        selectedMovie = datasource.objectAtIndexPath(indexPath)
         perform(segue: .showMovieDetail, sender: nil)
     }
 }
