@@ -22,11 +22,9 @@ class MoviesViewController: UITableViewController {
         }
     }
 
-    lazy var datasource = TableViewDataSource(
+    lazy var datasource = TableViewDataSource<MovieListCell>(
         tableView: tableView,
-        cellIdentifier: MovieListCell.identifier,
-        fetchedResultsController: self.fetchedResultsManager.controller,
-        delegate: self
+        fetchedResultsController: self.fetchedResultsManager.controller
     )
 
     var category: MovieListCategory = .watchlist {
@@ -253,13 +251,6 @@ extension MoviesViewController: UITextFieldDelegate {
         saveAction?.isEnabled = entryLength > 0 ? true : false
 
         return true
-    }
-}
-
-// MARK: - TableViewDataSourceDelegate
-extension MoviesViewController: TableViewDataSourceDelegate {
-    func configure(_ cell: MovieListCell, for movie: StoredMovie) {
-        cell.configure(with: movie)
     }
 }
 

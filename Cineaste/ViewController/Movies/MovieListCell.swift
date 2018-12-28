@@ -8,8 +8,7 @@
 
 import UIKit
 
-class MovieListCell: UITableViewCell {
-    static let identifier = "MovieListCell"
+class MovieListCell: UITableViewCell, ConfiguringCell {
 
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var title: TitleLabel!
@@ -23,7 +22,7 @@ class MovieListCell: UITableViewCell {
     @IBOutlet weak var runtime: DescriptionLabel!
     @IBOutlet weak var releaseDate: DescriptionLabel!
 
-    func configure(with movie: StoredMovie) {
+    func configure(for movie: StoredMovie) {
         if let moviePoster = movie.poster {
             poster.image = UIImage(data: moviePoster)
         } else {

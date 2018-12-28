@@ -118,6 +118,7 @@
 		3FF7913020DE274A007B7D37 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F98063F20556EA700B92A27 /* InfoPlist.strings */; };
 		3FF7913120DE274A007B7D37 /* MoviesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F61B2FD1FFAD680007A0557 /* MoviesList.storyboard */; };
 		3FF7913220DE274A007B7D37 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 3FD6AA7820BA986900B72ABC /* Localizable.stringsdict */; };
+		4EA2BCC421D6C2A7006C905E /* ConfiguringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA2BCC321D6C2A7006C905E /* ConfiguringCell.swift */; };
 		4ECBA59C21D2685C0074492B /* Webservice+Cineaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA59B21D2685C0074492B /* Webservice+Cineaste.swift */; };
 		4ECBA59E21D28A900074492B /* MovieSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA59D21D28A900074492B /* MovieSearchController.swift */; };
 		4ECBA5A021D2EAD40074492B /* Resource+Cineaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA59F21D2EAD40074492B /* Resource+Cineaste.swift */; };
@@ -250,6 +251,7 @@
 		3FF095D02103258D00ADFB86 /* SettingsViewController+MFMailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+MFMailCompose.swift"; sourceTree = "<group>"; };
 		3FF095D3210325D100ADFB86 /* SettingsViewController+UIDocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+UIDocumentPicker.swift"; sourceTree = "<group>"; };
 		3FF7913720DE274A007B7D37 /* Cineaste Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Cineaste Dev.app"; path = "Cineaste App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EA2BCC321D6C2A7006C905E /* ConfiguringCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfiguringCell.swift; sourceTree = "<group>"; };
 		4EABD57A2129C49E007F20D9 /* NonClearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonClearView.swift; sourceTree = "<group>"; };
 		4EABD57D2129C622007F20D9 /* NonClearViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonClearViewTests.swift; sourceTree = "<group>"; };
 		4ECBA59B21D2685C0074492B /* Webservice+Cineaste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Webservice+Cineaste.swift"; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 				4ED1199921D4FF6B00016AB4 /* NSManagedObjectContext+Extensions.swift */,
 				3F8C569B1FFACAFF00F09A82 /* MovieStorage.swift */,
 				4ED1199B21D56F0900016AB4 /* TableViewDataSource.swift */,
+				4EA2BCC321D6C2A7006C905E /* ConfiguringCell.swift */,
 			);
 			path = CoreDataHelper;
 			sourceTree = "<group>";
@@ -994,6 +997,7 @@
 				3FF7911320DE274A007B7D37 /* Storyboard.swift in Sources */,
 				4ECBA59E21D28A900074492B /* MovieSearchController.swift in Sources */,
 				3FF7911420DE274A007B7D37 /* MovieMatchCell.swift in Sources */,
+				4EA2BCC421D6C2A7006C905E /* ConfiguringCell.swift in Sources */,
 				3FF7911520DE274A007B7D37 /* AppDelegate.swift in Sources */,
 				3FF7911620DE274A007B7D37 /* AlertMessage.swift in Sources */,
 				3FF7911720DE274A007B7D37 /* View.swift in Sources */,
