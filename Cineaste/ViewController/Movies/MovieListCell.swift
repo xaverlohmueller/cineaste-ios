@@ -18,20 +18,11 @@ class MovieListCell: UITableViewCell, ConfiguringCell {
         }
     }
 
-    @IBOutlet weak var votes: DescriptionLabel!
-    @IBOutlet weak var runtime: DescriptionLabel!
-    @IBOutlet weak var releaseDate: DescriptionLabel!
-
     func configure(for movie: StoredMovie) {
         if let moviePoster = movie.poster {
             poster.image = UIImage(data: moviePoster)
         } else {
             poster.image = UIImage.posterPlaceholder
         }
-
-        title.text = movie.title
-        votes.text = movie.formattedVoteAverage
-        runtime.text = movie.formattedRuntime
-        releaseDate.text = movie.formattedReleaseDate
     }
 }

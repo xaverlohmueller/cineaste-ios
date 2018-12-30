@@ -22,16 +22,14 @@ class MoviesViewController: UITableViewController {
         }
     }
 
-    lazy var datasource = TableViewDataSource<MovieListCell>(
-        tableView: tableView,
-        fetchedResultsController: self.fetchedResultsManager.controller
-    )
+    lazy var datasource = category.datasource(for: tableView)
 
     var category: MovieListCategory = .watchlist {
         didSet {
             title = category.title
             emptyListLabel.text = String.title(for: category)
             fetchedResultsManager.refetch(for: category.predicate)
+            datasource = category.datasource(for: tableView)
         }
     }
 

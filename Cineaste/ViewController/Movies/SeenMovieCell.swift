@@ -8,16 +8,7 @@
 
 import UIKit
 
-class SeenMovieCell: UITableViewCell {
-    static let identifier = "SeenMovieCell"
-
-    @IBOutlet weak var poster: UIImageView!
-    @IBOutlet weak var title: TitleLabel!
-    @IBOutlet weak var separatorView: UIView! {
-        didSet {
-            separatorView.backgroundColor = .primaryOrange
-        }
-    }
+class SeenMovieCell: MovieListCell {
     @IBOutlet weak var watched: DescriptionLabel!
     @IBOutlet weak var watchedIcon: UIImageView! {
         didSet {
@@ -25,12 +16,8 @@ class SeenMovieCell: UITableViewCell {
         }
     }
 
-    func configure(with movie: StoredMovie) {
-        if let moviePoster = movie.poster {
-            poster.image = UIImage(data: moviePoster)
-        } else {
-            poster.image = UIImage.posterPlaceholder
-        }
+    override func configure(for movie: StoredMovie) {
+        super.configure(for: movie)
 
         title.text = movie.title
         watched.text = movie.formattedWatchedDate

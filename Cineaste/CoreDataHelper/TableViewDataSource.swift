@@ -9,10 +9,12 @@
 import UIKit
 import CoreData
 
+typealias TableViewCell = UITableViewCell & ConfiguringCell
+
 /// Note: this class doesn't support working with multiple sections
-class TableViewDataSource<Cell: UITableViewCell & ConfiguringCell>: NSObject,
-                                                                    UITableViewDataSource,
-                                                                    NSFetchedResultsControllerDelegate {
+class TableViewDataSource<Cell: TableViewCell>: NSObject,
+                                                UITableViewDataSource,
+                                                NSFetchedResultsControllerDelegate {
     typealias Object = Cell.Object
 
     required init(tableView: UITableView,
