@@ -14,17 +14,13 @@ class MovieStorageManager {
     let backgroundContext: NSManagedObjectContext
 
     // MARK: Init with dependency
-    init(container: NSPersistentContainer = AppDelegate.persistentContainer, useViewContext: Bool = false) {
+    init(container: NSPersistentContainer = AppDelegate.persistentContainer) {
         persistentContainer = container
         persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
 
-        if useViewContext {
-            backgroundContext = persistentContainer.viewContext
-        } else {
-            let context = persistentContainer.newBackgroundContext()
-            context.mergePolicy = NSOverwriteMergePolicy
-            backgroundContext = context
-        }
+        let context = persistentContainer.newBackgroundContext()
+        context.mergePolicy = NSOverwriteMergePolicy
+        backgroundContext = context
     }
 
     // MARK: CRUD
