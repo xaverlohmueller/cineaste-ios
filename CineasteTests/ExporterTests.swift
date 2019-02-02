@@ -18,8 +18,7 @@ class ExporterTests: XCTestCase {
         helper.initStubs()
         defer { helper.flushData() }
 
-        let storageManager = MovieStorageManager(container: helper
-            .mockPersistentContainer, useViewContext: true)
+        let storageManager = MovieStorageManager(container: helper.mockPersistentContainer)
 
         guard let importPath = Bundle(for: ImporterTests.self)
             .path(forResource: "Import", ofType: "json"),

@@ -17,7 +17,7 @@ class MovieStorageTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        storageManager = MovieStorageManager(container: helper.mockPersistentContainer, useViewContext: true)
+        storageManager = MovieStorageManager(container: helper.mockPersistentContainer)
 
         assert(storageManager.fetchAll().isEmpty, "Database should be empty")
         helper.initStubs()
@@ -87,7 +87,9 @@ class MovieStorageTests: XCTestCase {
         storageManager.updateMovieItem(with: movie.objectID, watched: newWatchedValue) { result in
             switch result {
             case .success:
-                expc.fulfill()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    expc.fulfill()
+                }
             case .error:
                 break
             }
